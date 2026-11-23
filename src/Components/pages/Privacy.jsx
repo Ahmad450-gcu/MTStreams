@@ -12,7 +12,7 @@ const Privacy = () => {
                               Privacy Policy
                         </h1>
                         <p className="mb-10 text-sm text-gray-500">
-                              Effective date: November 2, 2026
+                              Effective date: November 23, 2026
                         </p>
 
                         <div className="space-y-8 leading-7">
@@ -54,11 +54,36 @@ const Privacy = () => {
 
                               <section>
                                     <h2 className="mb-3 text-xl font-semibold text-white">3. Analytics and Tracking</h2>
+                                    <p className="mb-4">
+                                          MTStreams uses PostHog, a product analytics service, to understand how the
+                                          app is used and to find problems. No account or sign-in is involved. PostHog
+                                          gives your browser a random anonymous ID, and we do not know who you are.
+                                    </p>
+                                    <p className="mb-4">
+                                          We collect the pages you open, which titles you view, when you open a trailer
+                                          or a watch page, how far a trailer plays, clicks and taps, errors, and page
+                                          speed. PostHog also records your approximate location (country and city,
+                                          worked out from your IP address), your browser, device type, screen size, and
+                                          the site that referred you. For searches we record only how long the search
+                                          was and how many results it returned, never the words you typed.
+                                    </p>
+                                    <p className="mb-4">
+                                          <strong className="text-white">Session replay.</strong> Visits may be
+                                          recorded as a replay of the MTStreams interface (what was on screen, scrolling,
+                                          clicks and taps) so we can see where the app is confusing or broken. Everything
+                                          typed into text fields is hidden in replays, and we do not record network
+                                          data or the browser console. Video players from other sites, including
+                                          YouTube trailers and playback providers, are not recorded.
+                                    </p>
                                     <p>
-                                          MTStreams does not currently use PostHog analytics in its production
-                                          deployment. We do not currently send browsing or playback events to a
-                                          PostHog project from the production application. This may change in a
-                                          future version, in which case this policy will be updated.
+                                          Analytics data is stored by PostHog in the United States and is used only to
+                                          improve MTStreams. We do not sell it or use it for advertising. You can block
+                                          collection with a content or tracker blocker, or by clearing site data, which
+                                          also resets your anonymous ID. See the{" "}
+                                          <a className="text-emerald-400 hover:underline" href="https://posthog.com/privacy" target="_blank" rel="noreferrer">
+                                                PostHog Privacy Policy
+                                          </a>
+                                          .
                                     </p>
                               </section>
 
@@ -117,8 +142,10 @@ const Privacy = () => {
                               <section>
                                     <h2 className="mb-3 text-xl font-semibold text-white">5. Cookies and Local Storage</h2>
                                     <p>
-                                          The production application does not currently use PostHog tracking cookies
-                                          or analytics-based local storage. MTStreams may use browser-managed caching
+                                          PostHog stores your anonymous analytics ID and the current session in a
+                                          first-party cookie and in your browser&apos;s local storage. MTStreams also keeps
+                                          My List, your journal, and your preferences in local storage on your device;
+                                          these stay on your device. MTStreams may use browser-managed caching
                                           and storage, including service worker and cache functionality, to support
                                           performance and offline access. Third-party services embedded in or
                                           accessed through MTStreams may independently use cookies or similar

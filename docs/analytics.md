@@ -4,14 +4,15 @@ MTStreams uses PostHog's browser SDK. Login is not required: the SDK assigns a p
 
 ## Activate on Vercel
 
-The supplied public project token and US host are configured locally in the ignored `.env.local` file. In your Vercel project's **Settings → Environment Variables**, copy these two values into the Production environment:
+Production is configured in the Vercel project's **Settings → Environment Variables** (Production), added on 2026-11-23:
 
 ```env
-VITE_POSTHOG_PROJECT_TOKEN=<your public phc_ project token>
+VITE_POSTHOG_PROJECT_TOKEN=<public phc_ project token>   # type: Config (public by design)
 VITE_POSTHOG_HOST=https://us.i.posthog.com
+VITE_POSTHOG_SESSION_REPLAY=true
 ```
 
-Deploy the updated code, or redeploy after setting the variables. Vite embeds these values at build time. Use the public project token, never a PostHog personal API key. Analytics safely stays disabled when the token is missing.
+Vite embeds these values at build time, so a change only takes effect on the next deploy. The `phc_` project token is meant to be public (it ships in the browser bundle); never use a PostHog personal API key. Analytics stays disabled when the token is missing, and `VITE_POSTHOG_ENABLED=false` switches everything off on the next build. Local `.env` files are not uploaded to Vercel (see `.vercelignore`).
 
 ## Where to see your traffic
 
@@ -65,7 +66,7 @@ Search text is not sent in custom events; only its length and result counts are 
 
 ## Optional replay and local validation
 
-Session replay is off by default. To enable it, set `VITE_POSTHOG_SESSION_REPLAY=true`, enable **Record user sessions** in PostHog's project settings, and rebuild. Inputs are masked; network bodies, headers, and console recording are disabled. Replays cover your app, not playback inside a third-party iframe.
+Session replay is on in production (`VITE_POSTHOG_SESSION_REPLAY=true`). PostHog only keeps recordings while **Record user sessions** is enabled in the project's Session replay settings; sampling and minimum duration are also set there. Inputs are masked; network bodies, headers, and console recording are disabled. Replays cover your app, not playback inside a third-party iframe.
 
 For a local delivery check, temporarily set `VITE_POSTHOG_CAPTURE_IN_DEV=true` in `.env.local` and restart `npm run dev`. Those events are tagged as development. Restore it to `false` afterward. `VITE_POSTHOG_ENABLED=false` disables all tracking on the next build.
 

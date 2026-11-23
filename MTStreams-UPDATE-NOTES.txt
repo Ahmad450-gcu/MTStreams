@@ -1,0 +1,29 @@
+MTSTREAMS BRAND + EXPERIENCE UPDATE
+
+Included changes:
+- Replaced Cineverra/MoviesFlix naming in app metadata, navigation, page titles, analytics labels and project documentation with MTStreams.
+- Created original MTStreams SVG/PNG brand icons and a new social preview graphic.
+- Updated the PWA manifest, install identity, theme colours, offline screen and service-worker cache version.
+- Rebuilt the home featured area as a timed carousel with previous/next, pause/resume and slide indicators.
+- Added a muted YouTube trailer preview to movie detail heroes, with a sound toggle and poster fallback when no compatible trailer exists or the player errors.
+- Replaced the TV CoverFlow season presentation with the MTStreams Season Library cards.
+- Reworked the season dialog to fetch TMDB season episode metadata, display episode stills/descriptions, switch seasons and select an episode before using the existing Watch route.
+
+Intentionally untouched:
+- src/routes/RouterHandler.jsx
+- src/Components/pages/Stream.jsx
+- src/providers/*
+- src/utils/playbackProviders.js
+- src/utils/streamProvider.js
+
+Validation performed in the build environment:
+- JS/JSX syntax parse across 77 files: passed.
+- CSS parse: passed.
+- JSON parse for package and PWA manifest: passed.
+- Relative import path scan: passed.
+- Focused checks for carousel controls, trailer fallback, TV season/episode selection and existing route destinations: passed.
+- PWA icon files exist and match manifest dimensions: passed.
+
+A full Vite production build and live browser/playback test could not be run here because npm dependency installation timed out and left an incomplete node_modules directory. Run `npm run build` and `npm run test:analytics` in the existing local project after applying the patch.
+
+Apply this archive from the project root. It contains changed/new files only and does not include .env, node_modules, dist or .git.

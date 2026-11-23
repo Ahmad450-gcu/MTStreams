@@ -1,0 +1,9 @@
+MTStreams UI refinement patch
+
+Includes: dedicated search page and results grid (replaces the GooeySearch popup),
+high-contrast search field styling, TV season selectors on the detail page and
+episode dialog, and MTStreams app branding/assets.
+
+Playback providers, Stream.jsx, provider registry, API utility, and route table
+are not changed by this refinement patch. Extract this archive into the project
+root and overwrite matching files.

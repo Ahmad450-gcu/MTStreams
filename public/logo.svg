@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="MTStreams">
+  <defs>
+    <linearGradient id="mint" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a2f0e3"/>
+      <stop offset="1" stop-color="#43aa9b"/>
+    </linearGradient>
+    <linearGradient id="surface" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17252c"/>
+      <stop offset="1" stop-color="#080d12"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#surface)"/>
+  <rect x="9" y="9" width="494" height="494" rx="103" fill="none" stroke="#d8f7f1" stroke-opacity=".14" stroke-width="7"/>
+  <path d="M105 347V164l74 108 77-108v183" fill="none" stroke="url(#mint)" stroke-width="39" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M287 166h120M347 166v181" fill="none" stroke="#f2f7f6" stroke-width="35" stroke-linecap="round"/>
+  <path d="m352 245 68 40-68 40" fill="none" stroke="url(#mint)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

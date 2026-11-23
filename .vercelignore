@@ -1,0 +1,17 @@
+# Never upload local environment files or credentials
+.env*
+**/.env*
+
+# Local backups and development artifacts
+*.bak
+*.backup
+*.before-*
+backups/
+
+# Existing local build output (Vercel builds from source)
+dist/
+
+# Source archives
+MTStreams-Source*.zip
+# Local Claude Code tooling
+.claude/

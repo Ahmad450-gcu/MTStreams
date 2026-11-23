@@ -1,0 +1,136 @@
+/* Experience launch intros. Only transform / opacity / stroke animations. */
+.xsp { position: fixed; inset: 0; z-index: 2147483000; display: grid; place-items: center; overflow: hidden; background: #000; cursor: pointer; isolation: isolate; }
+.xsp.is-leaving { pointer-events: none; animation: xspOut .52s cubic-bezier(.6,0,.4,1) forwards; }
+.xsp.is-leaving .xsp-mark { animation: xspMarkOut .52s cubic-bezier(.6,0,.4,1) forwards !important; }
+.xsp-mark { position: relative; z-index: 3; display: grid; place-items: center; }
+.xsp-mark svg { width: auto; height: clamp(40px, 12vw, var(--h, 80px)); max-width: 86vw; overflow: visible; }
+@keyframes xspOut { 0%, 30% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes xspMarkOut { to { transform: scale(1.18); opacity: 0; filter: blur(6px); } }
+
+/* ---------------------------------------------------------- Notflix */
+.xsp--netflix { background: #000; }
+.xsp-ribbons { position: absolute; inset: 0; display: flex; justify-content: center; gap: 0; }
+.xsp-ribbons span { position: absolute; bottom: -10%; left: var(--x); width: 7.5vw; height: var(--h); background: linear-gradient(0deg, transparent, var(--hue) 35%, #ff4d57 60%, transparent); opacity: 0; transform: translateY(40%) scaleY(.3); transform-origin: bottom; filter: blur(1.5px); mix-blend-mode: screen; animation: xspRibbon 1.6s cubic-bezier(.2,.8,.2,1) var(--d) forwards; }
+@keyframes xspRibbon { 30% { opacity: .9; } 100% { opacity: 0; transform: translateY(-60%) scaleY(1.2); } }
+.xsp-bloom { position: absolute; width: 70vmax; height: 70vmax; border-radius: 50%; background: radial-gradient(circle, rgb(229 9 20 / 55%) 0%, rgb(229 9 20 / 12%) 35%, transparent 65%); opacity: 0; transform: scale(.3); animation: xspBloom 1.1s ease-out .75s forwards; }
+@keyframes xspBloom { 60% { opacity: 1; } 100% { opacity: .55; transform: scale(1); } }
+.xsp--netflix .xsp-mark { opacity: 0; transform: scale(2.4); filter: blur(10px); animation: xspPunch .8s cubic-bezier(.2,.9,.2,1) .8s forwards; }
+@keyframes xspPunch { to { opacity: 1; transform: scale(1); filter: blur(0) drop-shadow(0 0 22px rgb(229 9 20 / 55%)); } }
+
+/* ------------------------------------------------------ prima video */
+.xsp--prime { background: radial-gradient(120% 90% at 50% 60%, #0a2440 0%, #00050d 70%); }
+.xsp-haze { position: absolute; width: 90vmax; height: 50vmax; border-radius: 50%; background: radial-gradient(closest-side, rgb(26 152 255 / 28%), transparent); opacity: 0; animation: xspFadeIn 1.4s ease-out .2s forwards; }
+.xsp-arc { position: absolute; z-index: 2; width: min(560px, 80vw); margin-top: 120px; overflow: visible; }
+.xsp-arc path { fill: none; stroke: #1a98ff; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 8px #1a98ff); animation: xspDraw 1s cubic-bezier(.5,0,.2,1) .35s forwards; }
+.xsp-comet { position: absolute; z-index: 2; width: 14px; height: 14px; border-radius: 50%; background: #e8f5ff; box-shadow: 0 0 18px 6px #1a98ff, 0 0 50px 14px rgb(26 152 255 / 50%); opacity: 0; offset-path: path("M -260 0 Q 0 140 260 0"); offset-rotate: 0deg; margin-top: 70px; animation: xspComet 1s cubic-bezier(.5,0,.2,1) .35s forwards; }
+@keyframes xspComet { 0% { opacity: 0; offset-distance: 0%; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; offset-distance: 100%; } }
+.xsp--prime .xsp-mark { opacity: 0; transform: translateY(16px); animation: xspRise .7s cubic-bezier(.2,.8,.2,1) .9s forwards; }
+
+/* ------------------------------------------------------------ HBX max */
+.xsp--max { background: #000; }
+.xsp-aurora { position: absolute; inset: -20%; filter: blur(60px); opacity: 0; animation: xspFadeIn 1s ease-out forwards; }
+.xsp-aurora span { position: absolute; left: 50%; top: 50%; width: 55vmax; height: 55vmax; border-radius: 45% 55% 60% 40%; mix-blend-mode: screen; animation: xspSwirl 3.2s linear infinite; }
+.xsp-aurora span:nth-child(1) { background: radial-gradient(circle, #0047ff 0%, transparent 65%); translate: -70% -55%; }
+.xsp-aurora span:nth-child(2) { background: radial-gradient(circle, #7b2cff 0%, transparent 65%); translate: -30% -45%; animation-duration: 4s; animation-direction: reverse; }
+.xsp-aurora span:nth-child(3) { background: radial-gradient(circle, #00c3ff 0%, transparent 60%); translate: -50% -30%; animation-duration: 5s; }
+@keyframes xspSwirl { to { transform: rotate(360deg); } }
+.xsp-grain { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent 30%, #000 85%); }
+.xsp--max .xsp-mark { clip-path: inset(0 100% 0 0); animation: xspWipe .9s cubic-bezier(.7,0,.2,1) .45s forwards, xspChrome .8s ease-in-out 1.35s; }
+@keyframes xspChrome { 50% { filter: brightness(1.9) drop-shadow(0 0 18px rgb(140 120 255 / 70%)); } }
+@keyframes xspWipe { to { clip-path: inset(0 0 0 0); } }
+
+/* ------------------------------------------------------------ Dizney+ */
+.xsp--disney { background: radial-gradient(130% 100% at 50% 100%, #1b3a8a 0%, #0b1440 38%, #040714 80%); }
+.xsp-stars { position: absolute; inset: 0; }
+.xsp-stars span { position: absolute; width: var(--s); height: var(--s); border-radius: 50%; background: #fff; box-shadow: 0 0 6px rgb(255 255 255 / 80%); opacity: 0; animation: xspTwinkle 1.4s ease-in-out var(--d) infinite alternate; }
+@keyframes xspTwinkle { from { opacity: .1; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+.xsp-castle-arc { position: absolute; z-index: 2; width: min(620px, 92vw); margin-top: -40px; overflow: visible; }
+.xsp-castle-arc path { fill: none; stroke: #cfe3ff; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 6px #8fc1ff) drop-shadow(0 0 16px #3d7bff); animation: xspDraw 1.2s cubic-bezier(.55,0,.25,1) .3s forwards; }
+.xsp-sparkle { position: absolute; z-index: 2; width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px 6px #bcd8ff, 0 0 40px 14px rgb(61 123 255 / 55%); opacity: 0; offset-path: path("M -255 125 Q 0 -140 255 125"); margin-top: -40px; animation: xspComet 1.2s cubic-bezier(.55,0,.25,1) .3s forwards; }
+.xsp--disney .xsp-mark { opacity: 0; transform: scale(.92); filter: blur(4px); animation: xspGlowIn .9s ease-out 1.05s forwards; }
+@keyframes xspGlowIn { to { opacity: 1; transform: scale(1); filter: blur(0) drop-shadow(0 0 18px rgb(140 190 255 / 55%)); } }
+
+/* ---------------------------------------------------------------- hulo */
+.xsp--hulu { background: #0b0c0f; }
+.xsp-rings { position: absolute; display: grid; place-items: center; }
+.xsp-rings span { position: absolute; width: 140px; height: 140px; border: 3px solid #1ce783; border-radius: 50%; opacity: 0; animation: xspRing 1.5s cubic-bezier(.2,.8,.2,1) calc(.55s + var(--i) * .18s) forwards; }
+@keyframes xspRing { 0% { opacity: .9; transform: scale(.2); } 100% { opacity: 0; transform: scale(5.5); } }
+.xsp--hulu .xsp-mark { opacity: 0; transform: scale(.2); animation: xspElastic .9s cubic-bezier(.34,1.56,.64,1) .35s forwards; }
+@keyframes xspElastic { to { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 22px rgb(28 231 131 / 45%)); } }
+
+/* ----------------------------------------------------------- Paramont+ */
+.xsp--paramount { background: radial-gradient(120% 90% at 50% 40%, #0d2a6b 0%, #050a1c 70%); }
+.xsp-glow-blue { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; background: radial-gradient(circle, rgb(0 100 255 / 35%), transparent 60%); opacity: 0; animation: xspFadeIn 1.2s ease-out .4s forwards; }
+.xsp-orbit { position: absolute; z-index: 2; width: 0; height: 0; }
+.xsp-orbit span { position: absolute; left: -7px; top: -9px; color: #fff; font-size: 14px; text-shadow: 0 0 8px #8fb8ff; opacity: 0; transform: translate(var(--from), var(--fromy)) scale(.4); animation: xspStar 1s cubic-bezier(.2,.8,.2,1) var(--d) forwards; }
+@keyframes xspStar { 30% { opacity: 1; } 100% { opacity: 1; transform: rotate(var(--a)) translateX(clamp(120px, 24vw, 190px)) rotate(calc(-1 * var(--a))) scale(1); } }
+.xsp--paramount .xsp-mark { opacity: 0; transform: translateY(24px); animation: xspRise .8s cubic-bezier(.2,.8,.2,1) .95s forwards; }
+
+/* ----------------------------------------------------------- Pear TV+ */
+.xsp--apple { background: #000; }
+.xsp--apple .xsp-mark { opacity: 0; transform: scale(1.12); filter: blur(18px); animation: xspFocus 1.3s cubic-bezier(.2,.8,.2,1) .25s forwards; }
+@keyframes xspFocus { to { opacity: 1; transform: scale(1); filter: blur(0) drop-shadow(0 0 30px rgb(255 255 255 / 25%)); } }
+.xsp-line { position: absolute; z-index: 2; width: min(360px, 60vw); height: 1px; margin-top: 110px; background: linear-gradient(90deg, transparent, rgb(255 255 255 / 85%), transparent); transform: scaleX(0); animation: xspLine 1.1s cubic-bezier(.6,0,.2,1) .9s forwards; }
+@keyframes xspLine { to { transform: scaleX(1); } }
+
+/* --------------------------------------------------------------- MGN+ */
+.xsp--mgm { background: #000; }
+.xsp-spotlight { position: absolute; inset: 0; background: radial-gradient(50% 60% at 50% 45%, rgb(200 164 93 / 30%) 0%, rgb(200 164 93 / 6%) 45%, transparent 70%); opacity: 0; animation: xspFadeIn 1.2s ease-out .15s forwards; }
+.xsp-dust { position: absolute; inset: 0; }
+.xsp-dust span { position: absolute; bottom: 10%; width: var(--s); height: var(--s); border-radius: 50%; background: #f3d58e; box-shadow: 0 0 6px #c8a45d; opacity: 0; animation: xspDust var(--t) ease-out var(--d) forwards; }
+@keyframes xspDust { 20% { opacity: .9; } 100% { opacity: 0; transform: translateY(-55vh); } }
+.xsp--mgm .xsp-mark { opacity: 0; transform: translateY(10px); animation: xspRise .9s cubic-bezier(.2,.8,.2,1) .5s forwards, xspGleam .9s ease-in-out 1.3s; }
+@keyframes xspGleam { 50% { filter: brightness(1.7) drop-shadow(0 0 24px rgb(243 213 142 / 80%)); } }
+.xsp--mgm .xsp-mark svg { filter: drop-shadow(0 0 14px rgb(200 164 93 / 45%)); }
+
+/* ------------------------------------------------------------- peacoq */
+.xsp--peacock { background: #000; }
+.xsp-feathers { position: absolute; z-index: 2; width: 0; height: 0; }
+.xsp-feathers span { position: absolute; left: -11px; top: -11px; width: 22px; height: 22px; border-radius: 50%; background: var(--c); box-shadow: 0 0 18px var(--c); opacity: 0; animation: xspFeather 1.6s cubic-bezier(.3,1.2,.4,1) calc(.15s + var(--i) * .06s) forwards; }
+@keyframes xspFeather {
+      0% { opacity: 0; transform: rotate(var(--a)) translateY(0) scale(.2); }
+      45% { opacity: 1; transform: rotate(var(--a)) translateY(-150px) scale(1.4); }
+      75% { opacity: .9; transform: rotate(var(--a)) translateY(-120px) scale(1); }
+      100% { opacity: 0; transform: rotate(var(--a)) translateY(-10px) scale(.2); }
+}
+.xsp--peacock .xsp-mark { opacity: 0; transform: translateY(14px); animation: xspRise .7s cubic-bezier(.2,.8,.2,1) 1.05s forwards; }
+
+/* -------------------------------------------------------- crunchyreel */
+.xsp--crunchyroll { background: #000; }
+.xsp-flash { position: absolute; inset: 0; background: #f47521; animation: xspFlash .7s cubic-bezier(.7,0,.3,1) forwards; clip-path: circle(150% at 50% 50%); }
+@keyframes xspFlash { to { clip-path: circle(0% at 50% 50%); } }
+.xsp-swirl { position: absolute; z-index: 1; width: min(720px, 150vw); overflow: visible; animation: xspSpin 2.4s cubic-bezier(.3,0,.2,1) forwards, xspDim 2.4s ease-in forwards; }
+@keyframes xspDim { 0%, 45% { opacity: 1; } 100% { opacity: .28; } }
+.xsp-swirl circle { fill: none; stroke: #f47521; stroke-width: 6; stroke-linecap: round; stroke-dasharray: .7 .3; stroke-dashoffset: 1; animation: xspDraw 1.1s cubic-bezier(.5,0,.2,1) .35s forwards; filter: drop-shadow(0 0 10px rgb(244 117 33 / 60%)); }
+.xsp-swirl circle + circle { stroke-width: 4; opacity: .6; animation-delay: .5s; }
+@keyframes xspSpin { from { transform: rotate(-120deg) scale(.8); } to { transform: rotate(200deg) scale(1); } }
+.xsp--crunchyroll .xsp-mark { opacity: 0; transform: translateX(-30px); animation: xspSlide .8s cubic-bezier(.2,.8,.2,1) 1s forwards; }
+@keyframes xspSlide { to { opacity: 1; transform: none; filter: drop-shadow(0 0 16px rgb(244 117 33 / 40%)); } }
+
+/* --------------------------------------------------------- JioHotster */
+.xsp--hotstar { background: #0f1014; }
+/* Every layer is pre-drawn and only fades or scales (no animated filters). */
+.xsp-jhglow { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgb(124 77 255 / 45%), rgb(31 128 224 / 18%) 30%, transparent 60%); opacity: 0; will-change: opacity; animation: xspJhGlow 2.3s ease-out forwards; }
+@keyframes xspJhGlow { 20% { opacity: 1; } 60% { opacity: .8; } 100% { opacity: .35; } }
+.xsp-jhhalo { position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; background: radial-gradient(closest-side, rgb(255 255 255 / 55%), rgb(180 77 255 / 45%) 25%, rgb(76 141 255 / 18%) 55%, transparent); opacity: 0; transform: scale(.08); will-change: transform, opacity; animation: xspJhHalo 1.3s cubic-bezier(.5,0,.2,1) forwards; }
+@keyframes xspJhHalo { 40% { opacity: 1; transform: scale(.3); } 100% { opacity: 0; transform: scale(1.4); } }
+.xsp-jhspark { position: absolute; z-index: 1; width: 120px; height: 120px; will-change: transform, opacity; animation: xspJhSpark 1.3s cubic-bezier(.5,0,.2,1) forwards; }
+@keyframes xspJhSpark {
+      0% { opacity: 0; transform: scale(.1) rotate(-90deg); }
+      45% { opacity: 1; transform: scale(1.4) rotate(0deg); }
+      100% { opacity: 0; transform: scale(4) rotate(45deg); }
+}
+.xsp--hotstar .xsp-mark { opacity: 0; transform: scale(.92); animation: xspRise .7s cubic-bezier(.2,.8,.2,1) .95s forwards; }
+
+/* --------------------------------------------------------------- shared */
+@keyframes xspFadeIn { to { opacity: 1; } }
+@keyframes xspDraw { to { stroke-dashoffset: 0; } }
+@keyframes xspRise { to { opacity: 1; transform: none; } }
+@media (max-width: 640px) {
+      .xsp-arc { margin-top: 90px; }
+      .xsp-line { margin-top: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+      .xsp, .xsp * { animation: none !important; }
+      .xsp-mark { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
+}

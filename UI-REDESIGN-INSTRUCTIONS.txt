@@ -1,0 +1,13 @@
+MTSTREAMS PRODUCT UI UPDATE
+
+This source tree has been updated with the MTStreams brand, a rotating featured hero,
+movie trailer previews, a distinct TV Season Library, and a redesigned episode guide.
+
+Existing route definitions and playback-provider configuration are intentionally preserved.
+
+Before deploying, run:
+  npm run build
+  npm run test:analytics
+
+PWA packaging and Microsoft Store submission are follow-up release steps. Confirm production
+hosting, API/content permissions, privacy information and Microsoft Store requirements first.

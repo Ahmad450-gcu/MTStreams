@@ -1,0 +1,19 @@
+MTStreams — Four requested refinements
+
+Updated application files:
+- src/Components/pages/TV/TVSeasonModal.jsx
+- src/index.css
+- src/Components/pages/Search.jsx
+- src/routes/RouterHandler.jsx
+- src/Components/ui/Nav.jsx
+- src/Components/pages/index.js
+- src/analytics/events.js
+
+Deleted application file:
+- src/Components/pages/People/PeoplePage.jsx
+  Run Remove-People-Browse-Page.ps1 once after extracting this patch into the project root.
+
+Retained:
+- /person/details/:id route and PeopleDetails page
+- actor/celebrity information in movie/TV details and search
+- Stream.jsx, provider modules, provider registry, provider URLs, and playback logic

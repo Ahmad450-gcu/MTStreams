@@ -1,0 +1,57 @@
+{
+    "id":  "/",
+    "name":  "MTStreams",
+    "short_name":  "MTStreams",
+    "description":  "Explore movies, series, trailers, cast and crew with MTStreams.",
+    "lang":  "en-US",
+    "start_url":  "/",
+    "scope":  "/",
+    "orientation":  "any",
+    "display":  "standalone",
+    "display_override":  [
+                             "standalone",
+                             "minimal-ui"
+                         ],
+    "theme_color":  "#141517",
+    "background_color":  "#141517",
+    "categories":  [
+                       "entertainment",
+                       "video"
+                   ],
+    "icons":  [
+                  {
+                      "src":  "/logo-192.png",
+                      "sizes":  "192x192",
+                      "type":  "image/png",
+                      "purpose":  "any"
+                  },
+                  {
+                      "src":  "/logo-512.png",
+                      "sizes":  "512x512",
+                      "type":  "image/png",
+                      "purpose":  "any"
+                  },
+                  {
+                      "src":  "/logo-maskable-512.png",
+                      "sizes":  "512x512",
+                      "type":  "image/png",
+                      "purpose":  "maskable"
+                  }
+              ],
+    "screenshots":  [
+                        {
+                            "src":  "/screenshots/desktop-home.png",
+                            "sizes":  "1440x900",
+                            "type":  "image/png",
+                            "form_factor":  "wide",
+                            "label":  "MTStreams desktop homepage"
+                        },
+                        {
+                            "src":  "/screenshots/mobile-home.png",
+                            "sizes":  "390x844",
+                            "type":  "image/png",
+                            "form_factor":  "narrow",
+                            "label":  "MTStreams mobile homepage"
+                        }
+                    ]
+}

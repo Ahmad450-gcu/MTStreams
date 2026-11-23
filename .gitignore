@@ -1,0 +1,12 @@
+.vercel
+.env*
+
+# dependencies and build output
+node_modules/
+dist/
+
+# local tooling
+.claude/
+*.log
+.DS_Store
+Thumbs.db

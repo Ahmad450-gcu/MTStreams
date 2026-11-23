@@ -1,0 +1,36 @@
+# Baseline before the listing update (live listing = Submission 1). Format: time | market | query | scanned | MoviesFlix pos | MTStreams pos ("-" = not in top 100)
+2026-11-13 13:04Z | US | 'movies' | scanned 100 | MoviesFlix 88 | MTStreams -
+2026-11-13 13:04Z | US | 'free movies' | scanned 100 | MoviesFlix 39 | MTStreams -
+2026-11-13 13:04Z | US | 'stream movies' | scanned 100 | MoviesFlix 49 | MTStreams -
+2026-11-13 13:04Z | US | 'movie streaming' | scanned 100 | MoviesFlix 25 | MTStreams -
+2026-11-13 13:04Z | US | 'netflix' | scanned 100 | MoviesFlix 22 | MTStreams -
+2026-11-13 13:04Z | US | 'tv shows' | scanned 100 | MoviesFlix 49 | MTStreams -
+2026-11-13 13:05Z | US | 'watch movies' | scanned 100 | MoviesFlix 65 | MTStreams -
+2026-11-13 13:05Z | US | 'movie app' | scanned 100 | MoviesFlix 34 | MTStreams -
+2026-11-13 13:05Z | US | 'films' | scanned 100 | MoviesFlix 82 | MTStreams -
+2026-11-13 13:05Z | US | 'series' | scanned 100 | MoviesFlix - | MTStreams -
+2026-11-13 13:05Z | US | 'trailers' | scanned 100 | MoviesFlix 93 | MTStreams -
+2026-11-13 13:06Z | US | 'movie discovery' | scanned 100 | MoviesFlix 99 | MTStreams -
+2026-11-13 13:06Z | US | 'entertainment' | scanned 100 | MoviesFlix - | MTStreams -
+2026-11-13 13:08Z | US | 'mt streams' | scanned 100 | MoviesFlix 44 | MTStreams 1
+2026-11-13 13:08Z | US | 'streams' | scanned 100 | MoviesFlix - | MTStreams -
+2026-11-13 13:10Z | PK | 'movies' | scanned 100 | MoviesFlix 9 | MTStreams -
+2026-11-13 13:10Z | PK | 'free movies' | scanned 100 | MoviesFlix 7 | MTStreams -
+2026-11-13 13:10Z | PK | 'stream movies' | scanned 100 | MoviesFlix 8 | MTStreams -
+2026-11-13 13:10Z | PK | 'movie streaming' | scanned 100 | MoviesFlix 9 | MTStreams -
+2026-11-13 13:10Z | PK | 'netflix' | scanned 100 | MoviesFlix 9 | MTStreams -
+2026-11-13 13:11Z | PK | 'tv shows' | scanned 100 | MoviesFlix - | MTStreams -
+2026-11-13 13:11Z | IN | 'movies' | scanned 100 | MoviesFlix 5 | MTStreams -
+2026-11-13 13:11Z | IN | 'free movies' | scanned 100 | MoviesFlix 5 | MTStreams -
+2026-11-13 13:11Z | IN | 'stream movies' | scanned 100 | MoviesFlix 5 | MTStreams -
+2026-11-13 13:11Z | IN | 'movie streaming' | scanned 100 | MoviesFlix 7 | MTStreams -
+2026-11-13 13:12Z | IN | 'netflix' | scanned 100 | MoviesFlix 9 | MTStreams -
+2026-11-13 13:12Z | IN | 'tv shows' | scanned 100 | MoviesFlix - | MTStreams -
+2026-11-13 13:12Z | GB | 'movies' | scanned 100 | MoviesFlix 30 | MTStreams -
+2026-11-13 13:12Z | GB | 'free movies' | scanned 100 | MoviesFlix 9 | MTStreams -
+2026-11-13 13:12Z | GB | 'stream movies' | scanned 100 | MoviesFlix 6 | MTStreams -
+2026-11-13 13:13Z | GB | 'movie streaming' | scanned 100 | MoviesFlix 5 | MTStreams -
+2026-11-13 13:13Z | GB | 'netflix' | scanned 100 | MoviesFlix - | MTStreams -
+2026-11-13 13:13Z | GB | 'tv shows' | scanned 100 | MoviesFlix - | MTStreams -
+2026-11-13 13:57Z | PK | 'mtstreams' | scanned 100 | MoviesFlix 12 | MTStreams 1
+2026-11-13 13:58Z | PK | 'movies and tv shows' | scanned 100 | MoviesFlix 10 | MTStreams -

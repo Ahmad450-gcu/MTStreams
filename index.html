@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+      <head>
+            <meta charset="UTF-8" />
+            <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+            <link rel="apple-touch-icon" sizes="600x600" href="/logo_600.png" />
+            <meta name="theme-color" content="#141517" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+            <meta name="application-name" content="MTStreams" />
+            <meta name="apple-mobile-web-app-title" content="MTStreams" />
+            <title>MTStreams | Movies & Series</title>
+            <meta name="description" content="Explore movies, series, trailers, cast and crew with MTStreams." />
+            <meta name="keywords" content="MTStreams, movies, films, television series, cast, crew, entertainment, trailers" />
+            <meta name="robots" content="index, follow" />
+            <link rel="manifest" href="/manifest.json" />
+
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="MTStreams" />
+            <meta property="og:title" content="MTStreams | Movies & Series" />
+            <meta property="og:description" content="Explore your next favourite movie or series with MTStreams." />
+            <meta property="og:image" content="/ogimage.png" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt" content="MTStreams movie and series discovery" />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content="MTStreams | Movies & Series" />
+            <meta name="twitter:description" content="Explore your next favourite movie or series with MTStreams." />
+            <meta name="twitter:image" content="/ogimage.png" />
+            <meta name="twitter:image:alt" content="MTStreams movie and series discovery" />
+
+            <script type="application/ld+json">
+                  {
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "MTStreams",
+                        "description": "Movie and series discovery, trailers, cast and crew."
+                  }
+            </script>
+            <style id="mt-splash-style">
+                        @property --mt-iris { syntax: "<length>"; inherits: false; initial-value: 0px; }
+                        #mt-splash { position: fixed; inset: 0; z-index: 2147483000; display: grid; place-items: center; overflow: hidden; background: radial-gradient(120% 90% at 50% 50%, #1e1f22 0%, #141517 62%, #0f1012 100%); color: #f2f7f6; font-family: "Geist Variable", Geist, Inter, Arial, sans-serif; cursor: pointer; }
+                        #mt-splash.is-skipped { display: none; }
+                        .mt-splash__stage { position: relative; display: grid; justify-items: center; gap: clamp(18px, 3.2vh, 30px); transform: translateZ(0); }
+                        .mt-splash__streak { position: absolute; left: 50%; top: calc(50% - 26px); width: min(120vw, 1500px); height: 2px; translate: -50% 0; background: linear-gradient(90deg, transparent, rgb(162 240 227 / 0%) 12%, rgb(210 255 248 / 95%) 50%, rgb(162 240 227 / 0%) 88%, transparent); filter: blur(0.4px); box-shadow: 0 0 22px 6px rgb(110 230 210 / 35%); opacity: 0; transform: scaleX(0.04); animation: mtStreak 1.25s cubic-bezier(.2,.7,.2,1) .05s forwards; }
+                        .mt-splash__glow { position: absolute; left: 50%; top: calc(50% - 26px); width: min(70vw, 560px); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, rgb(67 170 155 / 30%) 0%, rgb(67 170 155 / 8%) 38%, transparent 68%); opacity: 0; animation: mtGlow 2.2s ease-out .25s forwards; }
+                        .mt-splash__mark { width: clamp(108px, 18vmin, 168px); height: auto; overflow: visible; filter: drop-shadow(0 0 18px rgb(110 230 210 / 28%)); animation: mtBreathe 1.6s ease-in-out 2.2s infinite alternate; }
+                        .mt-splash__mark path, .mt-splash__mark rect { stroke-dasharray: 1; stroke-dashoffset: 1; }
+                        .mt-splash__frame { animation: mtDraw .95s cubic-bezier(.55,.05,.25,1) 1.0s forwards; }
+                        .mt-splash__m { animation: mtDraw .8s cubic-bezier(.6,.05,.3,1) .32s forwards; }
+                        .mt-splash__t { animation: mtDraw .5s cubic-bezier(.6,.05,.3,1) .78s forwards; }
+                        .mt-splash__play { animation: mtDraw .34s ease-out 1.08s forwards, mtPulse .55s ease-out 1.4s; transform-origin: 386px 285px; }
+                        .mt-splash__surface { opacity: 0; animation: mtFade .9s ease-out 1.05s forwards; }
+                        .mt-splash__word { position: relative; margin: 0; font-size: clamp(17px, 2.6vmin, 24px); font-weight: 800; letter-spacing: .62em; text-indent: .62em; white-space: nowrap; opacity: 0; filter: blur(6px); animation: mtWord 1s cubic-bezier(.2,.8,.2,1) 1.25s forwards; -webkit-mask-image: linear-gradient(100deg, #000 40%, rgb(0 0 0 / 55%) 50%, #000 60%); -webkit-mask-size: 300% 100%; -webkit-mask-position: 120% 0; mask-image: linear-gradient(100deg, #000 40%, rgb(0 0 0 / 55%) 50%, #000 60%); mask-size: 300% 100%; mask-position: 120% 0; }
+                        .mt-splash__word b { color: #8fe6d6; font-weight: inherit; }
+                        .mt-splash__tag { margin: -6px 0 0; color: rgb(242 247 246 / 55%); font-size: clamp(10px, 1.4vmin, 12px); font-weight: 600; letter-spacing: .42em; text-indent: .42em; text-transform: uppercase; opacity: 0; animation: mtFade .8s ease-out 1.65s forwards; }
+                        #mt-splash.is-leaving { pointer-events: none; -webkit-mask-image: radial-gradient(circle at 50% 46%, transparent var(--mt-iris), #000 calc(var(--mt-iris) + 2px)); mask-image: radial-gradient(circle at 50% 46%, transparent var(--mt-iris), #000 calc(var(--mt-iris) + 2px)); animation: mtIris .62s cubic-bezier(.7,0,.3,1) forwards, mtOut .62s ease-in forwards; }
+                        #mt-splash.is-leaving .mt-splash__stage { transition: transform .62s cubic-bezier(.7,0,.3,1), opacity .4s ease-in; transform: scale(1.35); opacity: 0; }
+                        @keyframes mtStreak { 0% { opacity: 0; transform: scaleX(.04); } 28% { opacity: 1; } 70% { opacity: .9; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(1.05) scaleY(.4); } }
+                        @keyframes mtGlow { 0% { opacity: 0; transform: scale(.6); } 60% { opacity: 1; } 100% { opacity: .75; transform: scale(1); } }
+                        @keyframes mtDraw { to { stroke-dashoffset: 0; } }
+                        @keyframes mtFade { to { opacity: 1; } }
+                        @keyframes mtPulse { 0% { transform: scale(1); filter: none; } 40% { transform: scale(1.22); filter: drop-shadow(0 0 10px #a2f0e3); } 100% { transform: scale(1); filter: none; } }
+                        @keyframes mtWord { 0% { opacity: 0; filter: blur(6px); letter-spacing: .62em; text-indent: .62em; } 70% { filter: blur(0); } 100% { opacity: 1; filter: blur(0); letter-spacing: .2em; text-indent: .2em; -webkit-mask-position: -20% 0; mask-position: -20% 0; } }
+                        @keyframes mtBreathe { from { filter: drop-shadow(0 0 14px rgb(110 230 210 / 20%)); } to { filter: drop-shadow(0 0 26px rgb(110 230 210 / 45%)); } }
+                        @keyframes mtIris { from { --mt-iris: 0px; } to { --mt-iris: 150vmax; } }
+                        @keyframes mtOut { 0%, 70% { opacity: 1; } 100% { opacity: 0; } }
+                        @media (prefers-reduced-motion: reduce) { #mt-splash { display: none; } }
+            </style>
+      </head>
+      <body>
+            <div id="root" style="background-color: #141517"></div>
+            <!--
+                  Launch intro. It lives in the HTML so it paints before any JavaScript
+                  bundle downloads, and it never delays the app: React mounts underneath
+                  it straight away. Shown once per session, only on a fresh launch of the
+                  home page with no OTT experience selected, and never with reduced motion.
+            -->
+            <div id="mt-splash" aria-hidden="true">
+                  <div class="mt-splash__streak"></div>
+                  <div class="mt-splash__glow"></div>
+                  <div class="mt-splash__stage">
+                        <svg class="mt-splash__mark" viewBox="0 0 512 512" role="presentation">
+                              <defs>
+                                    <linearGradient id="mtSplashMint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a2f0e3" /><stop offset="1" stop-color="#43aa9b" /></linearGradient>
+                                    <linearGradient id="mtSplashSurface" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17252c" /><stop offset="1" stop-color="#080d12" /></linearGradient>
+                              </defs>
+                              <rect class="mt-splash__surface" width="512" height="512" rx="112" fill="url(#mtSplashSurface)" />
+                              <rect class="mt-splash__frame" pathLength="1" x="9" y="9" width="494" height="494" rx="103" fill="none" stroke="#d8f7f1" stroke-opacity=".5" stroke-width="7" />
+                              <path class="mt-splash__m" pathLength="1" d="M105 347V164l74 108 77-108v183" fill="none" stroke="url(#mtSplashMint)" stroke-width="39" stroke-linecap="round" stroke-linejoin="round" />
+                              <path class="mt-splash__t" pathLength="1" d="M287 166h120M347 166v181" fill="none" stroke="#f2f7f6" stroke-width="35" stroke-linecap="round" />
+                              <path class="mt-splash__play" pathLength="1" d="m352 245 68 40-68 40" fill="none" stroke="url(#mtSplashMint)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <p class="mt-splash__word"><b>MT</b>STREAMS</p>
+                        <p class="mt-splash__tag">Movies &amp; Series</p>
+                  </div>
+                  <script>
+                        (function () {
+                              var splash = document.getElementById("mt-splash");
+                              var KEY = "mtstreams:intro-seen";
+                              var show = false, experience = null;
+                              try {
+                                    show = location.pathname === "/"
+                                          && !sessionStorage.getItem(KEY)
+                                          && !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+                                    experience = localStorage.getItem("mtstreams:experience");
+                                    if (show) sessionStorage.setItem(KEY, "1");
+                              } catch (error) { show = false; }
+                              if (!show) { splash.remove(); return; }
+                              // An OTT experience was open last time: cover the page in its
+                              // background colour and let the app play that experience's own
+                              // intro (src/experiences/shared/splash). The cover removes itself
+                              // if the app doesn't take over in time.
+                              var BG = { netflix: "#000", prime: "#00050d", max: "#000", disney: "#0b0f24", hulu: "#0b0c0f", paramount: "#050a1c", apple: "#000", mgm: "#000", peacock: "#000", crunchyroll: "#000", hotstar: "#0f1014" };
+                              if (experience && BG[experience]) {
+                                    splash.remove();
+                                    var cover = document.createElement("div");
+                                    cover.id = "mt-splash-cover";
+                                    cover.setAttribute("aria-hidden", "true");
+                                    cover.style.cssText = "position:fixed;inset:0;z-index:2147483000;background:" + BG[experience] + ";transition:opacity .4s";
+                                    document.body.appendChild(cover);
+                                    window.__mtLaunchSplash = experience;
+                                    setTimeout(function () { if (cover.isConnected) { cover.style.opacity = "0"; setTimeout(function () { cover.remove(); }, 400); } }, 6000);
+                                    return;
+                              }
+                              var start = Date.now(), MIN = 2350, MAX = 7000, ready = false, done = false;
+                              function leave() {
+                                    if (done) return; done = true;
+                                    splash.classList.add("is-leaving");
+                                    setTimeout(function () { splash.remove(); }, 700);
+                              }
+                              function check() { if (ready && Date.now() - start >= MIN) leave(); }
+                              window.addEventListener("mtstreams:app-ready", function () { ready = true; check(); setTimeout(check, Math.max(0, MIN - (Date.now() - start))); }, { once: true });
+                              setTimeout(check, MIN);
+                              setTimeout(leave, MAX);
+                              splash.addEventListener("click", leave);
+                              window.addEventListener("keydown", leave, { once: true });
+                        })();
+                  </script>
+            </div>
+            <script type="module" src="/src/main.jsx"></script>
+      </body>
+</html>

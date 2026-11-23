@@ -1,0 +1,774 @@
+/* ==========================================================================
+   MTStreams theme — "Graphite"
+   Built the way the big streaming apps are: a quiet, near-neutral graphite
+   house (about 95% of the screen), white type and white primary buttons, and
+   the artwork supplies the colour. The brand mint from the logo appears only
+   where it means something: focus, the current page, selection.
+
+   Scope: every rule is under html:not([data-experience]) so OTT experiences
+   are never affected, and the extra specificity wins over the older layered
+   rules (including lazily loaded feature stylesheets).
+   Motion: transform and opacity only, switched off for reduced motion.
+   ========================================================================== */
+@import "@fontsource-variable/archivo/wdth.css";
+
+:root {
+      /* Type */
+      --mt-font: "Archivo Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+      --mt-condensed: 74%;
+
+      /* House: graphite, surfaces get lighter as they rise */
+      --mt-ink-0: #141517;
+      --mt-ink-1: #1b1c1f;
+      --mt-ink-2: #232427;
+      --mt-ink-3: #2d2e32;
+      --mt-hairline: rgb(255 255 255 / 8%);
+      --mt-hairline-strong: rgb(255 255 255 / 15%);
+
+      /* Type colours */
+      --mt-text: #f3f3f4;
+      --mt-text-2: #b2b4b9;
+      --mt-text-3: #85878d;
+
+      /* Primary action: white, like a lit screen */
+      --mt-primary: #f3f3f4;
+      --mt-primary-hi: #ffffff;
+      --mt-primary-ink: #141517;
+      --mt-primary-wash: rgb(255 255 255 / 10%);
+
+      /* Brand mint (matches the logo and app icon), used sparingly */
+      --mt-mint: #7fd8c8;
+      /* Ratings keep the familiar star gold */
+      --mt-star: #f2c24f;
+
+      /* Page edge: lines content up with the nav logo at every width. */
+      --mt-gutter: clamp(20px, 5vw, 76px);
+      --mt-edge: max(var(--mt-gutter), calc((100% - 1440px) / 2));
+
+      --mt-radius-art: 8px;
+      --mt-radius-panel: 14px;
+      --mt-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ------------------------------------------------------------------ base */
+html:not([data-experience]) body {
+      background: var(--mt-ink-0);
+      color: var(--mt-text);
+      font-family: var(--mt-font);
+      font-optical-sizing: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+}
+
+html:not([data-experience]) .app-shell {
+      background: var(--mt-ink-0);
+      color: var(--mt-text);
+}
+
+html:not([data-experience]) ::selection {
+      background: var(--mt-mint);
+      color: var(--mt-primary-ink);
+}
+
+/* Keyboard focus: a soft white ring on things you press. Text fields have no
+   ring of their own; the field around them already brightens while typing. */
+html:not([data-experience]) :is(button, a, [role="button"], select):focus-visible {
+      outline: 2px solid rgb(255 255 255 / 70%);
+      outline-offset: 3px;
+}
+
+html:not([data-experience]) :is(input, textarea):focus,
+html:not([data-experience]) :is(input, textarea):focus-visible {
+      outline: none;
+      border-color: rgb(255 255 255 / 32%);
+}
+
+/* Headings everywhere use the condensed cut of the same family. */
+html:not([data-experience]) :is(h1, h2, h3) {
+      font-family: var(--mt-font);
+}
+
+/* Small all-caps "eyebrow" labels above headings repeat what the heading says. */
+html:not([data-experience]) :is(
+      .hero-eyebrow,
+      .row-kicker,
+      .catalog-page__eyebrow,
+      .search-page__eyebrow,
+      .search-results__eyebrow,
+      .tv-season-section__eyebrow,
+      .mt-season-dialog__eyebrow,
+      .detail-hero__eyebrow,
+      .person-credit__eyebrow
+) {
+      display: none;
+}
+
+/* Labels that do carry information read in sentence case, not shouted. */
+html:not([data-experience]) :is(
+      .search-v2__label,
+      .search-spot__eyebrow,
+      .search-card__type,
+      .cmp-suggest span,
+      .cmp-label,
+      .dsc-field > span,
+      .dsc-reveal__eyebrow,
+      .hc-panel h3,
+      .jr-people-grid h4,
+      .jr-entry__editor label,
+      .lib-panel__group legend,
+      .lib-side h2,
+      .ppl-sub
+) {
+      letter-spacing: 0.01em;
+      text-transform: none;
+}
+
+/* These labels are written in capitals in the markup. */
+html:not([data-experience]) :is(
+      .mt-season-card__eyebrow,
+      .mt-season-dialog__selection-copy > span,
+      .mt-review-editorial__score.is-unrated > span,
+      .mt-episode-card__topline > span:first-child
+) {
+      display: inline-block;
+      letter-spacing: 0.01em;
+      text-transform: lowercase;
+}
+
+html:not([data-experience]) :is(
+      .mt-season-card__eyebrow,
+      .mt-season-dialog__selection-copy > span,
+      .mt-review-editorial__score.is-unrated > span,
+      .mt-episode-card__topline > span:first-child
+)::first-letter {
+      text-transform: uppercase;
+}
+
+html:not([data-experience]) .mt-review-editorial__eyebrow {
+      display: inline-flex;
+      font-size: 0;
+      letter-spacing: 0;
+}
+
+html:not([data-experience]) .mt-review-editorial__eyebrow::after {
+      color: var(--mt-text-2);
+      content: "Review";
+      font-size: 13px;
+      font-weight: 600;
+}
+
+/* ------------------------------------------------------------ navigation */
+html:not([data-experience]) .bottom-navigation-glass {
+      border-bottom: 1px solid var(--mt-hairline);
+      background: rgb(20 21 23 / 86%);
+      box-shadow: none;
+}
+
+html:not([data-experience]) .site-nav__inner {
+      min-height: 68px;
+}
+
+html:not([data-experience]) .site-brand__word {
+      color: var(--mt-text);
+      font-family: var(--mt-font);
+      font-stretch: 112%;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+}
+
+@media (min-width: 768px) {
+      html:not([data-experience]) .site-nav__link {
+            border-radius: 999px;
+            color: var(--mt-text-2);
+            font-size: 13.5px;
+            font-weight: 550;
+            letter-spacing: 0;
+      }
+
+      html:not([data-experience]) .site-nav__link:hover {
+            background: rgb(255 255 255 / 5%);
+            color: var(--mt-text);
+      }
+
+      html:not([data-experience]) .site-nav__link.is-active {
+            background: transparent;
+            color: var(--mt-text);
+      }
+
+      html:not([data-experience]) .site-nav__link.is-active::after {
+            right: 50%;
+            bottom: -13px;
+            left: 50%;
+            width: 18px;
+            height: 3px;
+            margin-left: -9px;
+            background: var(--mt-mint);
+      }
+}
+
+/* Phone dock: compact labels, current page shown by a soft fill and mint icon. */
+@media (max-width: 767px) {
+      html:not([data-experience]) .site-nav__link {
+            color: var(--mt-text-3);
+            font-size: 10px;
+            font-weight: 550;
+            letter-spacing: 0;
+      }
+
+      html:not([data-experience]) .site-nav__link.is-active {
+            background: rgb(255 255 255 / 8%);
+            color: var(--mt-text);
+      }
+
+      html:not([data-experience]) .site-nav__link.is-active svg {
+            color: var(--mt-mint);
+      }
+}
+
+/* ------------------------------------------------------------------ hero */
+html:not([data-experience]) :is(.home-featured, .home-hero-slide) {
+      background: var(--mt-ink-0);
+}
+
+html:not([data-experience]) .hero-artwork::after {
+      background:
+            linear-gradient(90deg, rgb(20 21 23 / 94%) 0%, rgb(20 21 23 / 74%) 30%, rgb(20 21 23 / 12%) 66%, rgb(20 21 23 / 0%) 100%),
+            linear-gradient(0deg, var(--mt-ink-0) 0%, rgb(20 21 23 / 70%) 16%, rgb(20 21 23 / 0%) 55%);
+}
+
+/* Details backdrop: show the whole scene. The picture is anchored to its top
+   (faces and titles usually sit there) and starts below the nav bar, and the
+   shade only darkens the strip behind the text instead of a third of the frame. */
+html:not([data-experience]) .detail-hero__image {
+      object-position: 50% 0%;
+}
+
+html:not([data-experience]) .detail-hero .hero-artwork::after {
+      background:
+            linear-gradient(90deg, rgb(20 21 23 / 90%) 0%, rgb(20 21 23 / 62%) 28%, rgb(20 21 23 / 14%) 50%, rgb(20 21 23 / 0%) 66%),
+            linear-gradient(0deg, var(--mt-ink-0) 0%, rgb(20 21 23 / 55%) 16%, rgb(20 21 23 / 0%) 45%);
+}
+
+@media (min-width: 768px) {
+      html:not([data-experience]) .detail-hero__artwork {
+            top: 68px;
+      }
+}
+
+/* Trailer preview behind the details header: always fill the frame at 16:9
+   (no black bars at any banner shape), zoomed slightly so YouTube's title bar
+   and logo sit outside the visible area. */
+html:not([data-experience]) .detail-hero__preview {
+      container-type: size;
+}
+
+html:not([data-experience]) .detail-hero__preview iframe {
+      width: max(100cqw, 177.78cqh) !important;
+      height: max(100cqh, 56.25cqw) !important;
+      transform: translate(-50%, -50%) scale(1.22);
+}
+
+html:not([data-experience]) .hero-title {
+      max-width: 13ch;
+      margin-top: 0;
+      color: #fff;
+      font-size: clamp(50px, 7.4vw, 112px);
+      font-stretch: var(--mt-condensed);
+      font-weight: 800;
+      letter-spacing: -0.012em;
+      line-height: 0.9;
+      text-shadow: 0 2px 30px rgb(0 0 0 / 35%);
+}
+
+/* Long titles step down in size so they never climb under the nav. */
+html:not([data-experience]) .hero-title[data-length="medium"] {
+      max-width: 15ch;
+      font-size: clamp(44px, 5.8vw, 88px);
+}
+
+html:not([data-experience]) .hero-title[data-length="long"] {
+      max-width: 17ch;
+      font-size: clamp(38px, 4.4vw, 66px);
+      line-height: 0.94;
+}
+
+html:not([data-experience]) .detail-hero__title[data-length="medium"] {
+      font-size: clamp(42px, 5.2vw, 80px);
+}
+
+html:not([data-experience]) .detail-hero__title[data-length="long"] {
+      max-width: 18ch;
+      font-size: clamp(36px, 4vw, 62px);
+      line-height: 0.96;
+}
+
+/* On short windows the banner grows to fit its text rather than letting the
+   title slide up under the nav. */
+@media (min-width: 768px) {
+      html:not([data-experience]) .home-hero-slide {
+            height: auto;
+      }
+
+      html:not([data-experience]) .home-hero-content {
+            padding-top: 112px;
+      }
+}
+
+html:not([data-experience]) .hero-facts {
+      margin-top: 22px;
+      color: var(--mt-text-2);
+      font-size: 14px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+}
+
+html:not([data-experience]) .hero-rating {
+      color: var(--mt-star);
+      font-weight: 650;
+}
+
+html:not([data-experience]) .hero-overview {
+      max-width: 54ch;
+      color: rgb(238 242 247 / 84%);
+      font-size: clamp(15px, 1.15vw, 17px);
+      line-height: 1.6;
+}
+
+html:not([data-experience]) .hero-actions {
+      gap: 12px;
+      margin-top: 30px;
+}
+
+/* -------------------------------------------------------------- buttons */
+html:not([data-experience]) .hero-button {
+      min-height: 50px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-size: 14.5px;
+      font-weight: 650;
+      letter-spacing: 0.005em;
+      transition: transform 180ms var(--mt-ease), background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+html:not([data-experience]) .hero-button:hover {
+      transform: translateY(-1px);
+}
+
+html:not([data-experience]) .hero-button:active {
+      transform: scale(0.97);
+}
+
+html:not([data-experience]) .hero-button--primary {
+      border-color: transparent;
+      background: var(--mt-primary);
+      color: var(--mt-primary-ink);
+}
+
+html:not([data-experience]) .hero-button--primary:hover {
+      background: var(--mt-primary-hi);
+}
+
+html:not([data-experience]) .hero-button--secondary {
+      border-color: var(--mt-hairline-strong);
+      background: rgb(255 255 255 / 14%);
+      color: var(--mt-text);
+}
+
+html:not([data-experience]) .hero-button--quiet {
+      border-color: transparent;
+      background: transparent;
+      color: var(--mt-text-2);
+}
+
+html:not([data-experience]) :is(.hero-button--secondary, .hero-button--quiet):hover {
+      border-color: var(--mt-hairline-strong);
+      background: rgb(255 255 255 / 9%);
+      color: var(--mt-text);
+}
+
+/* ------------------------------------------------------------- headings */
+html:not([data-experience]) .row-heading h2 {
+      color: var(--mt-text);
+      font-size: clamp(21px, 2.1vw, 28px);
+      font-stretch: 86%;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+}
+
+html:not([data-experience]) .catalog-page__header h1 {
+      color: #fff;
+      font-size: clamp(40px, 5.4vw, 72px);
+      font-stretch: var(--mt-condensed);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 0.95;
+}
+
+html:not([data-experience]) .catalog-page__header p {
+      max-width: 60ch;
+      color: var(--mt-text-2);
+      font-size: 15px;
+}
+
+@media (min-width: 768px) {
+      html:not([data-experience]) .catalog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+            gap: 28px 18px;
+      }
+}
+
+/* ---------------------------------------------------------------- search */
+html:not([data-experience]) .search-hero__content h1 {
+      font-stretch: var(--mt-condensed);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+}
+
+html:not([data-experience]) .search-hero__content h1 span {
+      color: inherit;
+      background: none;
+      -webkit-text-fill-color: currentColor;
+}
+
+/* ------------------------------------------------------------ page frame */
+/* Every page starts at the same edge as the nav logo. --mt-edge resolves
+   against each element's own width, so it is set on full-width blocks. */
+html:not([data-experience]) .home-row,
+html:not([data-experience]) .catalog-page:not(.frn-page) {
+      padding-inline: var(--mt-edge);
+}
+
+/* For You scrolls natively, so it would clip at the page margin while the
+   other rows run to the screen edge. Let it bleed to both edges too; the
+   first poster still lines up with the headings. */
+html:not([data-experience]) .fy-rail {
+      /* % would resolve against the row's inner width here, so use the
+         viewport-based form of the page edge. */
+      --fy-edge: max(var(--mt-gutter), calc((100vw - 1440px) / 2));
+      margin-inline: calc(var(--fy-edge) * -1);
+      padding-inline: var(--fy-edge);
+      scroll-padding-inline: var(--fy-edge);
+}
+
+html:not([data-experience]) :is(.home-hero-content, .detail-hero__content) {
+      width: 100%;
+      max-width: none;
+      padding-inline: var(--mt-edge);
+}
+
+html:not([data-experience]) .catalog-page:not(.frn-page) :is(
+      .catalog-page__header,
+      .catalog-grid,
+      .dsc-head, .dsc-bar, .dsc-note, .dsc-toolbar, .dsc-filters, .dsc-results
+) {
+      width: auto;
+      margin-inline: 0;
+}
+
+html:not([data-experience]) :is(
+      .cmp-picker, .cmp-empty, .cmp-table-wrap,
+      .jr-skeleton, .jr-panel--wide, .jr-journal,
+      .lib-banner, .rdr-note, .rdr-skeleton, .rdr-empty, .rdr-error
+) {
+      margin-inline: 0;
+}
+
+html:not([data-experience]) :is(.jr-stats, .jr-panels, .lib-layout, .rdr-layout) {
+      padding-inline: 0;
+}
+
+/* Release Radar: title on the left, Refresh / Alerts on the right. */
+html:not([data-experience]) .catalog-page__header.rdr-header {
+      flex-direction: row;
+      align-items: flex-end;
+}
+
+/* Franchises keep a full-bleed hero, so the edge goes on their blocks. */
+html:not([data-experience]) .frn-page > .catalog-page__header {
+      width: auto;
+      margin-inline: 0;
+      padding-inline: var(--mt-edge);
+}
+
+html:not([data-experience]) :is(.frn-grid, .frn-list, .frn-page--pad) {
+      padding-inline: var(--mt-edge);
+}
+
+html:not([data-experience]) :is(.frn-search, .frn-empty) {
+      margin-inline: var(--mt-edge);
+}
+
+html:not([data-experience]) .frn-hero__content {
+      width: 100%;
+      padding-inline: var(--mt-edge);
+}
+
+html:not([data-experience]) .frn-hero__content > * {
+      max-width: 720px;
+}
+
+/* ----------------------------------------------------------------- cards */
+/* Posters stand on their own: no card box, just artwork and a caption. */
+html:not([data-experience]) .media-card {
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      transition: transform 240ms var(--mt-ease);
+}
+
+html:not([data-experience]) .media-card:hover {
+      transform: translateY(-4px);
+      box-shadow: none;
+}
+
+html:not([data-experience]) .media-card__artwork {
+      border-radius: var(--mt-radius-art);
+      background: var(--mt-ink-2);
+      box-shadow: 0 0 0 1px var(--mt-hairline);
+      transition: box-shadow 240ms ease;
+}
+
+html:not([data-experience]) .media-card:hover .media-card__artwork {
+      box-shadow: 0 0 0 1px var(--mt-hairline-strong), 0 18px 36px -12px rgb(0 0 0 / 70%);
+}
+
+html:not([data-experience]) .media-card:hover .media-card__artwork img {
+      transform: scale(1.04);
+}
+
+html:not([data-experience]) .media-card__artwork::after {
+      inset: 55% 0 0;
+      background: linear-gradient(0deg, rgb(8 14 22 / 55%), transparent);
+}
+
+html:not([data-experience]) .media-card__rating {
+      top: 8px;
+      left: 8px;
+      padding: 4px 7px;
+      border: 0;
+      border-radius: 6px;
+      background: rgb(20 21 23 / 82%);
+      color: var(--mt-star);
+      font-variant-numeric: tabular-nums;
+}
+
+html:not([data-experience]) .media-card__hover {
+      background: rgb(0 0 0 / 40%);
+}
+
+html:not([data-experience]) .media-card__play {
+      border: 0;
+      background: var(--mt-primary);
+      color: var(--mt-primary-ink);
+}
+
+html:not([data-experience]) .media-card__info {
+      min-height: 0;
+      padding: 10px 2px 2px;
+}
+
+html:not([data-experience]) .media-card__info h3 {
+      color: var(--mt-text);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0;
+}
+
+html:not([data-experience]) .media-card__subline {
+      margin-top: 3px;
+      color: var(--mt-text-3);
+      font-size: 12px;
+      font-weight: 500;
+}
+
+html:not([data-experience]) .media-card__type {
+      display: inline-block;
+      color: var(--mt-text-3);
+      font-size: 12px;
+      letter-spacing: 0;
+      text-transform: lowercase;
+}
+
+html:not([data-experience]) .media-card__type::first-letter {
+      text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------- details */
+html:not([data-experience]) .detail-hero__title {
+      font-size: clamp(46px, 6.4vw, 96px);
+      font-stretch: var(--mt-condensed);
+      font-weight: 800;
+      letter-spacing: -0.012em;
+      line-height: 0.92;
+}
+
+/* Section headings on details and people pages (Storyline, Cast, Crew,
+   Reviews, Similar) share one left-aligned style. */
+html:not([data-experience]) .app-shell :is(h1.font-primary, h1.font-astralga):not(.detail-hero__title) {
+      color: var(--mt-text);
+      font-size: clamp(26px, 2.6vw, 36px);
+      font-stretch: 86%;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      text-align: left;
+}
+
+html:not([data-experience]) :is(.detail-storyline__heading, .detail-people) {
+      justify-content: flex-start;
+}
+
+html:not([data-experience]) .detail-storyline {
+      border-top-color: var(--mt-hairline);
+}
+
+/* The body of a details page lines up with the hero's left edge. */
+html:not([data-experience]) section:has(> .detail-storyline) {
+      padding-inline: var(--mt-edge);
+}
+
+html:not([data-experience]) .detail-storyline__overview {
+      max-width: 68ch;
+      margin-inline: 0;
+      color: rgb(238 242 247 / 86%);
+      line-height: 1.65;
+      text-align: left;
+}
+
+html:not([data-experience]) #tv-season-heading {
+      font-size: clamp(26px, 2.6vw, 36px);
+      font-stretch: 86%;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+}
+
+/* Decorative accent bars under headings and portraits compete with the one
+   real accent (the main action), so they go. */
+html:not([data-experience]) .detail-reviews__header > h1::after,
+html:not([data-experience]) .person-credit__portrait-line {
+      display: none;
+}
+
+/* Review cards: the caps tagline and signature repeat the card's purpose. */
+html:not([data-experience]) .mt-review-editorial__meta > span:first-child,
+html:not([data-experience]) .mt-review-editorial__signature {
+      display: none;
+}
+
+html:not([data-experience]) .mt-review-editorial__meta {
+      justify-content: flex-start;
+}
+
+html:not([data-experience]) .recommendations-grid {
+      grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+      gap: 28px 18px;
+}
+
+/* Calm, solid action buttons (the old rotating gradient border repainted
+   every frame). Colours come from each button's own fill/label settings. */
+html:not([data-experience]) .shiny-button {
+      min-height: 48px;
+      padding: 0 22px;
+      border: 1px solid var(--mt-hairline-strong) !important;
+      border-radius: 999px !important;
+      background: var(--gleam-base) !important;
+      box-shadow: none !important;
+      font-family: var(--mt-font);
+      font-size: 14.5px;
+      font-weight: 650;
+      animation: none !important;
+      transition: transform 180ms var(--mt-ease), filter 180ms ease;
+}
+
+html:not([data-experience]) .shiny-button:hover {
+      filter: brightness(1.12);
+      transform: translateY(-1px);
+}
+
+html:not([data-experience]) .shiny-button:active {
+      transform: scale(0.97);
+}
+
+html:not([data-experience]) .shiny-button::before,
+html:not([data-experience]) .shiny-button::after,
+html:not([data-experience]) .shiny-button span::before {
+      display: none !important;
+      animation: none !important;
+}
+
+/* ---------------------------------------------------------------- people */
+@media (min-width: 768px) {
+      html:not([data-experience]) .person-page {
+            gap: clamp(32px, 4vw, 64px);
+            padding: 112px var(--mt-edge) 120px;
+      }
+}
+
+html:not([data-experience]) .person-page > span:first-child {
+      top: 88px;
+      border: 1px solid var(--mt-hairline-strong);
+      background: rgb(45 46 50 / 80%);
+}
+
+html:not([data-experience]) .person-page > span:first-child svg {
+      color: var(--mt-text) !important;
+}
+
+html:not([data-experience]) .person-page h1 {
+      font-family: var(--mt-font);
+      letter-spacing: -0.005em;
+}
+
+/* Name under the portrait */
+html:not([data-experience]) .person-page h1.font-primary.mt-2 {
+      margin-top: 16px;
+      font-size: clamp(30px, 2.8vw, 40px);
+      font-stretch: var(--mt-condensed);
+      font-weight: 800;
+      line-height: 1;
+      text-align: center;
+}
+
+/* Section headings: Biography, Personal Info, Recent Projects */
+html:not([data-experience]) .person-page :is(h1.text-2xl, h1.md\:text-3xl) {
+      color: var(--mt-text);
+      font-size: clamp(24px, 2.2vw, 30px);
+      font-stretch: 86%;
+      font-weight: 700;
+}
+
+html:not([data-experience]) .person-page h1.text-2xl > span.inline-block {
+      display: none;
+}
+
+html:not([data-experience]) .person-page p {
+      max-width: 72ch;
+      color: rgb(238 242 247 / 84%);
+      line-height: 1.7;
+}
+
+/* Known-for chips */
+html:not([data-experience]) .person-page .bg-white\/20 {
+      padding: 7px 12px;
+      border: 1px solid var(--mt-hairline);
+      background: var(--mt-ink-2);
+      color: var(--mt-text-2);
+      letter-spacing: 0;
+}
+
+html:not([data-experience]) .person-page img.object-cover {
+      border-radius: var(--mt-radius-panel);
+}
+
+/* --------------------------------------------------------- reduced motion */
+@media (prefers-reduced-motion: reduce) {
+      html:not([data-experience]) :is(.media-card, .media-card__artwork, .media-card__artwork img, .hero-button) {
+            transition: none !important;
+      }
+      html:not([data-experience]) .media-card:hover {
+            transform: none;
+      }
+}
